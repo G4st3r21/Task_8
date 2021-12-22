@@ -1,12 +1,12 @@
 package ru.vsu.cs.PoryadinAV;
 
-import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import ru.vsu.cs.PoryadinAV.utils.ArrayUtils;
 
 import java.io.FileNotFoundException;
 
-class MatrixOnMatrixTest {
+public class MatrixOnMatrixTest {
 
     MatrixOnMatrix program = new MatrixOnMatrix();
 
@@ -17,7 +17,7 @@ class MatrixOnMatrixTest {
         int[] expectedResult = ArrayUtils.readIntArrayFromFile("testSrc/testOutput1.txt");
         int[] receivedResult = program.overlayMatrixOnOtherMatrix(matrices[0], matrices[1]);
 
-        Assert.assertArrayEquals(expectedResult, receivedResult);
+        Assertions.assertArrayEquals(expectedResult, receivedResult);
     }
 
     @Test
@@ -27,7 +27,7 @@ class MatrixOnMatrixTest {
         int[] expectedResult = ArrayUtils.readIntArrayFromFile("testSrc/testOutput2.txt");
         int[] receivedResult = program.overlayMatrixOnOtherMatrix(matrices[0], matrices[1]);
 
-        Assert.assertArrayEquals(expectedResult, receivedResult);
+        Assertions.assertArrayEquals(expectedResult, receivedResult);
     }
 
     @Test
@@ -37,7 +37,7 @@ class MatrixOnMatrixTest {
         int[] expectedResult = ArrayUtils.readIntArrayFromFile("testSrc/testOutput3.txt");
         int[] receivedResult = program.overlayMatrixOnOtherMatrix(matrices[0], matrices[1]);
 
-        Assert.assertArrayEquals(expectedResult, receivedResult);
+        Assertions.assertArrayEquals(expectedResult, receivedResult);
     }
 
     @Test
@@ -47,7 +47,7 @@ class MatrixOnMatrixTest {
         int[] expectedResult = ArrayUtils.readIntArrayFromFile("testSrc/testOutput4.txt");
         int[] receivedResult = program.overlayMatrixOnOtherMatrix(matrices[0], matrices[1]);
 
-        Assert.assertArrayEquals(expectedResult, receivedResult);
+        Assertions.assertArrayEquals(expectedResult, receivedResult);
     }
 
     @Test
@@ -57,7 +57,6 @@ class MatrixOnMatrixTest {
         int[] expectedResult = ArrayUtils.readIntArrayFromFile("testSrc/testOutput5.txt");
         int[] receivedResult = program.overlayMatrixOnOtherMatrix(matrices[0], matrices[1]);
 
-        Assert.assertArrayEquals(expectedResult, receivedResult);
+        Assertions.assertArrayEquals(expectedResult, receivedResult);
     }
-
 }
