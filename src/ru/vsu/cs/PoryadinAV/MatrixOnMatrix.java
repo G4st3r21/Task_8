@@ -6,15 +6,18 @@ public class MatrixOnMatrix {
 
     public int[] overlayMatrixOnOtherMatrix(int[][] matrix1, int[][] matrix2) {
         int[] answer = {-1, -1};
-        for (int y = 0; y < matrix1.length; y++) {
-            for (int x = 0; x < matrix1[0].length; x++) {
-                int[][] subMatrix = takeSquareFromMatrix(x, y, matrix1);
+        int[] regularArray1 = matrixToRegularArray(matrix1);
+        int[] regularArray2 = matrixToRegularArray(matrix2);
 
-                if (bruteForceMatrices(subMatrix, matrix2)) {
-                    answer[0] = x;
-                    answer[1] = y;
-
-                    return answer;
+        for (int i = 0; i < regularArray1.length; i++) {
+            if (regularArray1[i] == regularArray2[0]) {
+                int[] coordinates = findCoordinatesOfValueInMatrix(i, matrix1);
+                int[] tempArray = matrixToRegularArray(takeSquareFromMatrix(coordinates[0], coordinates[1], matrix1));
+                int lenOfMatrix2 = matrix2.length * matrix2[0].length;
+                if (Arrays.equals(takeSubSequenceFromArray(0, lenOfMatrix2 - 1, tempArray), regularArray2)) {
+                    answer[0] = coordinates[0];
+                    answer[1] = coordinates[1];
+                    break;
                 }
             }
         }
@@ -22,17 +25,11 @@ public class MatrixOnMatrix {
         return answer;
     }
 
-    private boolean bruteForceMatrices(int[][] matrix1, int[][] matrix2) {
-        for (int i = 0; i < matrix1.length; i++) {
-            int[][] subMatrix = new int[i + 1][matrix1[0].length - 1];
-            System.arraycopy(matrix1, 0, subMatrix, 0, i + 1);
+    private int[] findCoordinatesOfValueInMatrix(int pos, int[][] matrix) {
+        int y = pos / matrix[0].length;
+        int x = pos - y * matrix[0].length;
 
-            if (Arrays.equals(matrixToRegularArray(subMatrix), matrixToRegularArray(matrix2))) {
-                return true;
-            }
-        }
-
-        return false;
+        return new int[] {x, y};
     }
 
     private int[][] takeSquareFromMatrix(int x, int y, int[][] matrix) {
